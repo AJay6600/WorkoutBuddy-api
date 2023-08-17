@@ -1,6 +1,7 @@
 const express = require('express')
 require('dotenv').config()
 const WorkoutRouter = require('./routers/workout.js')
+const user = require('./routers/user.js')
 const mongoose = require('mongoose')
 const cors  = require('cors')
 // initialize the app
@@ -15,6 +16,7 @@ app.use((req,res,next)=>{
 
 // routes
 app.use('/api/workout',WorkoutRouter)
+app.use('/api/user',user)
 
 // app.use(
 //     express.urlencoded({ extended: true })
@@ -29,8 +31,8 @@ mongoose.connect(process.env.MONG_URI)
     })
 
  })
-
  .catch((err)=>{
+    console.log("Oops! Can't connect to Database ")
     console.log(err)
  })
 
